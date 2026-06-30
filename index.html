@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TURBINA MAX — Engajamento que gera recompensas.</title>
+<meta name="description" content="Programa de Pontos TURBINA MAX. Tire suas dúvidas com a StaffAni, entenda como ganhar e resgatar pontos.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0a1322;
+    --navy-2:#101d33;
+    --navy-3:#16263f;
+    --blue:#2F6FED;
+    --blue-soft:#6E9BFF;
+    --red:#E63946;
+    --white:#F5F8FC;
+    --grey:#8C9AB3;
+    --line:rgba(255,255,255,0.09);
+    --radius:16px;
+    --bg:var(--navy);
+    --panel:var(--navy-2);
+    --panel-2:var(--navy-3);
+    --text:var(--white);
+    --muted:var(--grey);
+    --shadow:0 20px 60px rgba(0,0,0,0.35);
+  }
+  [data-theme="light"]{
+    --bg:#F3F6FC;
+    --panel:#FFFFFF;
+    --panel-2:#EEF2FA;
+    --text:#0E1726;
+    --muted:#5C6A85;
+    --line:rgba(14,23,38,0.10);
+    --shadow:0 16px 40px rgba(20,40,90,0.10);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',system-ui,sans-serif;
+    transition:background .35s ease, color .35s ease;
+    -webkit-font-smoothing:antialiased;
+  }
+  .display{font-family:'Space Grotesk',system-ui,sans-serif;}
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
+
+  /* Header */
+  header.site{
+    position:sticky;top:0;z-index:50;
+    background:color-mix(in srgb, var(--bg) 86%, transparent);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  header.site .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;}
+  .brand{display:flex;align-items:center;gap:10px;font-family:'Space Grotesk';font-weight:700;font-size:18px;letter-spacing:.02em;}
+  .brand .b-turb{color:var(--text);}
+  .brand .b-a{color:var(--blue);}
+  .brand .b-max{color:var(--blue);}
+  .brand .b-x{color:var(--red);}
+  .header-actions{display:flex;align-items:center;gap:14px;}
+  .icon-btn{
+    width:38px;height:38px;border-radius:50%;border:1px solid var(--line);
+    background:var(--panel);display:flex;align-items:center;justify-content:center;
+    cursor:pointer;color:var(--text);transition:transform .2s ease, border-color .2s ease;
+  }
+  .icon-btn:hover{border-color:var(--blue-soft);}
+  .icon-btn:active{transform:scale(.92);}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:11px 20px;border-radius:999px;font-weight:600;font-size:14px;
+    border:1px solid transparent;cursor:pointer;text-decoration:none;
+    transition:transform .15s ease, box-shadow .15s ease, background .2s ease;
+    font-family:'Inter';
+  }
+  .btn:active{transform:scale(.97);}
+  .btn-primary{background:var(--blue);color:#fff;box-shadow:0 8px 24px rgba(47,111,237,0.35);}
+  .btn-primary:hover{box-shadow:0 10px 30px rgba(47,111,237,0.5);}
+  .btn-ghost{background:transparent;border-color:var(--line);color:var(--text);}
+  .btn-ghost:hover{border-color:var(--blue-soft);}
+
+  /* Hero */
+  .hero{
+    position:relative;
+    padding:88px 0 64px;
+    overflow:hidden;
+    background:
+      radial-gradient(900px 480px at 50% -10%, rgba(47,111,237,0.22), transparent 60%),
+      radial-gradient(600px 320px at 90% 10%, rgba(230,57,70,0.10), transparent 60%);
+  }
+  [data-theme="light"] .hero{
+    background:
+      radial-gradient(900px 480px at 50% -10%, rgba(47,111,237,0.14), transparent 60%),
+      radial-gradient(600px 320px at 90% 10%, rgba(230,57,70,0.06), transparent 60%);
+  }
+  .hero-inner{text-align:center;}
+  .hero img.lockup{width:300px;margin:0 auto 28px;filter:drop-shadow(0 18px 40px rgba(0,0,0,0.35));}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--blue-soft);font-weight:600;margin-bottom:18px;
+    border:1px solid var(--line);padding:6px 14px;border-radius:999px;
+    background:var(--panel);
+  }
+  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--red);box-shadow:0 0 0 3px rgba(230,57,70,0.18);}
+  .hero h1{
+    font-size:clamp(28px,4.4vw,44px);
+    line-height:1.12;font-weight:700;margin-bottom:18px;
+    max-width:720px;margin-left:auto;margin-right:auto;
+  }
+  .hero h1 .accent{color:var(--blue-soft);}
+  .hero p.lead{
+    color:var(--muted);font-size:17px;line-height:1.6;
+    max-width:560px;margin:0 auto 34px;
+  }
+  .hero-ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+
+  /* Sections generic */
+  section{padding:64px 0;}
+  .section-head{text-align:center;max-width:560px;margin:0 auto 40px;}
+  .section-head .tag{
+    font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--red);
+    font-weight:700;margin-bottom:10px;display:block;
+  }
+  .section-head h2{font-size:clamp(22px,3vw,30px);font-weight:700;margin-bottom:10px;}
+  .section-head p{color:var(--muted);font-size:15.5px;line-height:1.6;}
+
+  /* StaffAni panel — signature element */
+  .staffani-wrap{
+    background:linear-gradient(180deg, var(--panel), var(--panel-2));
+    border:1px solid var(--line);
+    border-radius:24px;
+    box-shadow:var(--shadow);
+    overflow:hidden;
+  }
+  .staffani-head{
+    display:flex;align-items:center;gap:14px;
+    padding:20px 24px;border-bottom:1px solid var(--line);
+  }
+  .gauge{
+    position:relative;width:46px;height:46px;border-radius:50%;
+    background:conic-gradient(var(--blue) 0deg 270deg, var(--line) 270deg 360deg);
+    display:flex;align-items:center;justify-content:center;
+    animation:spin 6s linear infinite;
+    flex:none;
+  }
+  .gauge::after{
+    content:"";position:absolute;inset:5px;border-radius:50%;
+    background:var(--panel);
+  }
+  .gauge-dot{position:relative;z-index:2;width:8px;height:8px;border-radius:50%;background:var(--red);}
+  @keyframes spin{to{transform:rotate(360deg);}}
+  @media (prefers-reduced-motion: reduce){ .gauge{animation:none;} }
+  .staffani-id{display:flex;flex-direction:column;}
+  .staffani-id .name{font-family:'Space Grotesk';font-weight:700;font-size:16px;}
+  .staffani-id .status{font-size:12.5px;color:var(--muted);display:flex;align-items:center;gap:6px;}
+  .staffani-id .status::before{content:"";width:7px;height:7px;border-radius:50%;background:#3ED598;display:inline-block;}
+
+  .chat-area{
+    height:380px;overflow-y:auto;padding:24px;
+    display:flex;flex-direction:column;gap:14px;
+  }
+  .msg{max-width:80%;padding:13px 16px;border-radius:16px;font-size:14.5px;line-height:1.55;}
+  .msg.bot{
+    align-self:flex-start;background:var(--panel-2);border:1px solid var(--line);
+    border-bottom-left-radius:4px;
+  }
+  .msg.user{
+    align-self:flex-end;background:var(--blue);color:#fff;
+    border-bottom-right-radius:4px;
+  }
+  .msg.bot strong{color:var(--blue-soft);}
+  .msg ul{margin:8px 0 0 18px;}
+  .msg li{margin-bottom:4px;}
+
+  .chips{
+    display:flex;gap:8px;flex-wrap:wrap;padding:0 24px 16px;
+  }
+  .chip{
+    border:1px solid var(--line);background:var(--panel);color:var(--text);
+    padding:9px 14px;border-radius:999px;font-size:13px;cursor:pointer;
+    transition:border-color .2s ease, background .2s ease;
+    font-family:'Inter';
+  }
+  .chip:hover{border-color:var(--blue-soft);background:var(--panel-2);}
+
+  .chat-input-row{
+    display:flex;gap:10px;padding:16px 24px;border-top:1px solid var(--line);
+  }
+  .chat-input-row input{
+    flex:1;background:var(--panel-2);border:1px solid var(--line);
+    border-radius:14px;padding:13px 16px;color:var(--text);font-size:14.5px;
+    font-family:'Inter';outline:none;
+  }
+  .chat-input-row input:focus{border-color:var(--blue-soft);}
+  .send-btn{
+    width:46px;height:46px;border-radius:14px;background:var(--blue);border:none;
+    display:flex;align-items:center;justify-content:center;cursor:pointer;flex:none;
+    color:#fff;transition:transform .15s ease;
+  }
+  .send-btn:active{transform:scale(.93);}
+
+  /* Como funciona */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .step{
+    background:var(--panel);border:1px solid var(--line);border-radius:18px;
+    padding:26px 22px;
+  }
+  .step .num{
+    font-family:'Space Grotesk';font-weight:700;font-size:13px;color:var(--blue-soft);
+    margin-bottom:14px;letter-spacing:.05em;
+  }
+  .step h3{font-size:17px;margin-bottom:8px;font-weight:600;}
+  .step p{font-size:14px;color:var(--muted);line-height:1.55;}
+
+  /* Tabela resumida de pontos */
+  .points-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+  .point-card{
+    background:var(--panel);border:1px solid var(--line);border-radius:16px;
+    padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;
+  }
+  .point-card .label{font-size:14px;font-weight:500;}
+  .point-card .val{
+    font-family:'Space Grotesk';font-weight:700;font-size:18px;color:var(--blue-soft);
+    white-space:nowrap;
+  }
+  .points-note{
+    text-align:center;color:var(--muted);font-size:13.5px;margin-top:18px;
+  }
+  .points-note a{color:var(--blue-soft);text-decoration:underline;}
+
+  /* Resgate / catalogo aviso */
+  .redeem-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+  .redeem-card{
+    background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:24px;
+  }
+  .redeem-card h3{font-size:16px;margin-bottom:10px;font-weight:600;}
+  .redeem-card p{font-size:14px;color:var(--muted);line-height:1.6;}
+  .redeem-card .eq{
+    margin-top:14px;padding-top:14px;border-top:1px solid var(--line);
+    font-size:13.5px;color:var(--text);
+  }
+  .callout{
+    grid-column:1/-1;
+    background:linear-gradient(120deg, rgba(47,111,237,0.12), rgba(230,57,70,0.07));
+    border:1px solid rgba(110,155,255,0.3);
+    border-radius:18px;padding:22px 24px;
+    display:flex;gap:16px;align-items:flex-start;
+  }
+  .callout .ico{
+    flex:none;width:36px;height:36px;border-radius:10px;background:var(--blue);
+    display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;
+  }
+  .callout h4{font-size:15px;margin-bottom:6px;font-weight:700;}
+  .callout p{font-size:14px;color:var(--text);opacity:.85;line-height:1.6;}
+
+  footer{
+    border-top:1px solid var(--line);padding:40px 0;margin-top:20px;
+  }
+  .footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:18px;}
+  .footer-brand{display:flex;flex-direction:column;gap:4px;}
+  .footer-brand .name{font-family:'Space Grotesk';font-weight:700;font-size:15px;}
+  .footer-brand .meta{font-size:13px;color:var(--muted);}
+  .footer-contact{font-size:13.5px;color:var(--muted);text-align:right;line-height:1.7;}
+  .footer-contact a{color:var(--blue-soft);text-decoration:none;}
+
+  @media (max-width:760px){
+    .steps{grid-template-columns:1fr;}
+    .points-grid{grid-template-columns:1fr;}
+    .redeem-grid{grid-template-columns:1fr;}
+    .footer-inner{flex-direction:column;align-items:flex-start;}
+    .footer-contact{text-align:left;}
+    .chat-area{height:320px;}
+  }
+</style>
+</head>
+<body data-theme="dark">
+
+<header class="site">
+  <div class="wrap">
+    <div class="brand">
+      <span class="b-turb">TURBIN</span><span class="b-a">A</span><span class="b-max">MAX</span>
+    </div>
+    <div class="header-actions">
+      <button class="icon-btn" id="themeToggle" aria-label="Alternar tema claro/escuro" title="Alternar tema">
+        <svg id="themeIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg>
+      </button>
+      <a href="#staffani" class="btn btn-primary">Falar com a StaffAni</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-inner">
+    <img src="logo-hero.png" alt="TURBINA MAX" class="lockup">
+    <span class="eyebrow"><span class="dot"></span> Programa de Pontos RE/MAX Influencer</span>
+    <h1>Toda ação que você faz pela franquia <span class="accent">vira ponto.</span> Toda dúvida tem resposta na hora.</h1>
+    <p class="lead">Capte, venda, indique, treine — e acompanhe seus pontos. A StaffAni explica como funciona, como pontuar e como resgatar, 24 horas por dia.</p>
+    <div class="hero-ctas">
+      <a href="#staffani" class="btn btn-primary">Tirar dúvida agora</a>
+      <a href="#como-funciona" class="btn btn-ghost">Ver como funciona</a>
+    </div>
+  </div>
+</section>
+
+<section id="staffani">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="tag">Assistente do programa</span>
+      <h2>Pergunte pra StaffAni</h2>
+      <p>Ela conhece o regulamento de ponta a ponta — pontuação, validação de captações, resgate e catálogo de recompensas.</p>
+    </div>
+
+    <div class="staffani-wrap">
+      <div class="staffani-head">
+        <div class="gauge"><span class="gauge-dot"></span></div>
+        <div class="staffani-id">
+          <span class="name">StaffAni</span>
+          <span class="status">Online agora</span>
+        </div>
+      </div>
+
+      <div class="chat-area" id="chatArea">
+        <div class="msg bot">Oi! Eu sou a StaffAni 👋 Posso te ajudar a entender o programa TURBINA MAX, como ganhar pontos, como validar uma captação ou como resgatar suas recompensas. O que você quer saber?</div>
+      </div>
+
+      <div class="chips" id="chipsRow">
+        <button class="chip" data-q="Como funciona o programa?">Como funciona o programa?</button>
+        <button class="chip" data-q="Como eu ganho pontos?">Como eu ganho pontos?</button>
+        <button class="chip" data-q="Como faço pra resgatar meus pontos?">Como resgato meus pontos?</button>
+        <button class="chip" data-q="Onde vejo o catálogo de recompensas da minha franquia?">Catálogo da minha franquia</button>
+      </div>
+
+      <div class="chat-input-row">
+        <input type="text" id="chatInput" placeholder="Digite sua dúvida sobre o TURBINA MAX..." autocomplete="off">
+        <button class="send-btn" id="sendBtn" aria-label="Enviar">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="como-funciona">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="tag">O ciclo</span>
+      <h2>Como funciona, na prática</h2>
+      <p>Três passos entre a sua ação e o ponto no seu saldo.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="num">01 · AÇÃO</div>
+        <h3>Você realiza a ação</h3>
+        <p>Capta um imóvel, fecha uma venda, indica um associado ou participa de um treinamento — tudo dentro do modelo da franquia.</p>
+      </div>
+      <div class="step">
+        <div class="num">02 · COMPROVAÇÃO</div>
+        <h3>StaffAni confere</h3>
+        <p>Para captações, você anexa o Estudo de Mercado e o CRE. A StaffAni verifica prazo, honorários e preço — automaticamente.</p>
+      </div>
+      <div class="step">
+        <div class="num">03 · CRÉDITO</div>
+        <h3>Pontos no seu saldo</h3>
+        <p>Aprovado, o crédito cai em até 48 horas. Em caso de dúvida na leitura do documento, o broker faz a validação manual.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pontos">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="tag">Tabela de pontos</span>
+      <h2>Principais formas de pontuar</h2>
+      <p>Resumo das ações com maior peso no programa.</p>
+    </div>
+    <div class="points-grid">
+      <div class="point-card"><span class="label">Captação validada (CRE + Estudo de Mercado aprovados)</span><span class="val">200 pts</span></div>
+      <div class="point-card"><span class="label">Indicação de novo associado com contrato assinado</span><span class="val">200 pts</span></div>
+      <div class="point-card"><span class="label">Renovação de exclusividade sem quebra</span><span class="val">100 pts</span></div>
+      <div class="point-card"><span class="label">Mentoria formal a associado em onboarding</span><span class="val">60 pts</span></div>
+      <div class="point-card"><span class="label">Realizar treinamento para associados</span><span class="val">50 pts</span></div>
+      <div class="point-card"><span class="label">Aniversário de associação (por ano completo)</span><span class="val">50 pts</span></div>
+      <div class="point-card"><span class="label">Indicação cruzada com negócio fechado</span><span class="val">40 pts</span></div>
+      <div class="point-card"><span class="label">Venda de imóvel concluída</span><span class="val">20 pts</span></div>
+    </div>
+    <p class="points-note">Lista completa de critérios, prazos e regras de elegibilidade: pergunte direto pra <a href="#staffani">StaffAni</a> ou fale com o broker da sua franquia.</p>
+  </div>
+</section>
+
+<section id="resgate">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="tag">Recompensas</span>
+      <h2>Resgate de pontos</h2>
+      <p>Pontos têm validade até 31/12 do ciclo vigente e podem virar Pix ou produtos da franquia.</p>
+    </div>
+    <div class="redeem-grid">
+      <div class="redeem-card">
+        <h3>Saque via Pix</h3>
+        <p>Resgate a partir de 500 pontos acumulados, direto na conta cadastrada.</p>
+        <div class="eq">1 ponto = R$ 0,05</div>
+      </div>
+      <div class="redeem-card">
+        <h3>Serviços e materiais da franquia</h3>
+        <p>Troque por produtos, serviços e materiais gráficos disponíveis no catálogo da sua franquia.</p>
+        <div class="eq">1 ponto = R$ 0,20 · mínimo de 500 pontos</div>
+      </div>
+      <div class="callout">
+        <div class="ico">!</div>
+        <div>
+          <h4>Sua franquia ainda não tem catálogo cadastrado?</h4>
+          <p>Nem toda franquia já configurou o catálogo de recompensas no sistema. Se você não encontrar o catálogo disponível, a troca de pontos deve ser <strong>solicitada diretamente ao broker da sua agência</strong>, que define e libera as opções de resgate disponíveis localmente.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <div class="footer-brand">
+      <span class="name">TURBINA MAX</span>
+      <span class="meta">Engajamento que gera recompensas.</span>
+      <span class="meta">Rodolfo Maggessi — Broker Owner RE/MAX Influencer</span>
+    </div>
+    <div class="footer-contact">
+      Dúvidas: (21) 3437-8070<br>
+      <a href="mailto:influencer@remax.com.br">influencer@remax.com.br</a><br>
+      ou pergunte direto pra StaffAni acima ↑
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // Theme toggle
+  const root = document.body;
+  const themeToggle = document.getElementById('themeToggle');
+  const themeIcon = document.getElementById('themeIcon');
+  const sunPath = '<circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>';
+  const moonPath = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
+
+  function applyTheme(t){
+    root.setAttribute('data-theme', t);
+    themeIcon.innerHTML = t === 'dark' ? sunPath : moonPath;
+    localStorage.setItem('turbinamax-theme', t);
+  }
+  const saved = localStorage.getItem('turbinamax-theme');
+  const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+  applyTheme(saved || (prefersLight ? 'light' : 'dark'));
+  themeToggle.addEventListener('click', () => {
+    applyTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  });
+
+  // StaffAni FAQ engine
+  const chatArea = document.getElementById('chatArea');
+  const chatInput = document.getElementById('chatInput');
+  const sendBtn = document.getElementById('sendBtn');
+  const chipsRow = document.getElementById('chipsRow');
+
+  const KB = [
+    { kw: ['oi','ola','olá','bom dia','boa tarde','boa noite','eai','e ai'],
+      a: 'Oi! Tudo bem? Pode perguntar sobre pontuação, captação validada, resgate ou o catálogo de recompensas — eu te explico certinho.' },
+    { kw: ['o que e','o que é','como funciona o programa','programa','sobre o turbina'],
+      a: '<strong>TURBINA MAX</strong> é o programa de pontos da RE/MAX Influencer. Você acumula pontos realizando ações como captações, vendas, indicações e treinamentos, e troca esses pontos por recompensas — Pix ou produtos/serviços da franquia.' },
+    { kw: ['ganhar ponto','ganho ponto','como pontuar','tabela de ponto','formas de pontuar','o que da ponto','o que dá ponto'],
+      a: 'As principais formas de pontuar são:<ul><li><strong>Captação validada</strong> (com CRE + Estudo de Mercado aprovados pela StaffAni) — 200 pts</li><li>Indicação de novo associado com contrato assinado — 200 pts</li><li>Renovação de exclusividade sem quebra — 100 pts</li><li>Treinamento para associados — 50 pts</li><li>Venda de imóvel concluída — 20 pts</li><li>Presença em treinamento (com check-in) — 10 pts</li></ul>Tem mais opções na tabela completa, ali em cima ↑.' },
+    { kw: ['captacao validada','captação validada','cre','estudo de mercado','200 ponto','honorario','honorário','prazo de 180','180 dia','preco de mercado','preço de mercado','validar captacao','validar captação'],
+      a: 'Pra captação valer 200 pontos, você anexa dois PDFs no cadastro: o <strong>Estudo de Mercado (ACM)</strong> e o <strong>CRE — Contrato de Exclusividade</strong>. Eu confiro automaticamente três coisas: prazo contratual de pelo menos 180 dias, honorários de 6% (com piso de R$ 15.000,00) e preço de captação dentro da faixa do Estudo de Mercado. Se os três batem, o crédito sai em até 48h. Se algo não bate, eu te aviso qual critério falhou.' },
+    { kw: ['resgatar','resgate','trocar ponto','sacar','pix','quanto vale','equivalencia','equivalência'],
+      a: 'Você pode resgatar a partir de <strong>500 pontos</strong>. Duas formas:<ul><li><strong>Pix:</strong> 1 ponto = R$ 0,05</li><li><strong>Produtos/serviços da franquia:</strong> 1 ponto = R$ 0,20</li></ul>O resgate pode ser feito a qualquer momento, respeitado o saldo mínimo.' },
+    { kw: ['catalogo','catálogo','recompensa','premio','prêmio','sem catalogo','sem catálogo','nao tem catalogo','não tem catálogo'],
+      a: 'O catálogo de recompensas fica disponível na sua franquia e nos canais digitais dela. <strong>Se a sua franquia ainda não cadastrou um catálogo</strong>, não tem problema: é só solicitar a troca de pontos diretamente com o <strong>broker da sua agência</strong>, que define as opções de resgate disponíveis localmente.' },
+    { kw: ['validade','vencer','vence','expira','expirar','quando perco'],
+      a: 'Os pontos valem até <strong>31 de dezembro</strong> do ciclo vigente. Pontos não usados até essa data expiram e não são ressarcidos — então vale a pena ficar de olho no saldo perto do fim do ano.' },
+    { kw: ['elegibilidade','participar','posso participar','fee','taxa de franquia','em dia'],
+      a: 'Pra participar e resgatar, o único critério de elegibilidade contínua é estar com o <strong>fee (taxa da franquia) em dia</strong> até 31/12 do ciclo vigente. CRECI atualizado não é exigência de elegibilidade — mas gera pontos quando apresentado em dia.' },
+    { kw: ['creci'],
+      a: 'Apresentar o CRECI em dia no seu cadastro do programa rende pontos, mas não é um requisito de elegibilidade. O requisito de elegibilidade é estar com o fee em dia até 31/12.' },
+    { kw: ['fraude','documento falso','adulterado','denunciar'],
+      a: 'Documentos falsos ou adulterados levam ao cancelamento imediato dos pontos da ação, podendo zerar o saldo e gerar consequências contratuais com a franquia. A franquia pode auditar qualquer ação pontuada a qualquer momento.' },
+    { kw: ['contato','telefone','email','e-mail','falar com humano','falar com broker','duvida','dúvida'],
+      a: 'Pode falar direto com a franquia: (21) 3437-8070 ou influencer@remax.com.br. Pra dúvidas sobre o regulamento, pode continuar perguntando aqui mesmo.' },
+  ];
+
+  const FALLBACK = 'Ainda não tenho certeza sobre isso. Posso te ajudar com pontuação, captação validada, resgate de pontos ou o catálogo de recompensas — ou você pode falar direto com o broker da sua franquia pelo (21) 3437-8070.';
+
+  function addMsg(text, who){
+    const div = document.createElement('div');
+    div.className = 'msg ' + who;
+    div.innerHTML = text;
+    chatArea.appendChild(div);
+    chatArea.scrollTop = chatArea.scrollHeight;
+  }
+
+  function normalize(s){
+    return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+  }
+
+  function answer(question){
+    const q = normalize(question);
+    let best = null, bestScore = 0;
+    KB.forEach(entry => {
+      let score = 0;
+      entry.kw.forEach(k => { if (q.includes(normalize(k))) score++; });
+      if (score > bestScore){ bestScore = score; best = entry; }
+    });
+    return best ? best.a : FALLBACK;
+  }
+
+  function handleQuestion(text){
+    if (!text.trim()) return;
+    addMsg(text, 'user');
+    chatInput.value = '';
+    setTimeout(() => addMsg(answer(text), 'bot'), 420);
+  }
+
+  sendBtn.addEventListener('click', () => handleQuestion(chatInput.value));
+  chatInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') handleQuestion(chatInput.value); });
+  chipsRow.addEventListener('click', (e) => {
+    const btn = e.target.closest('.chip');
+    if (btn) handleQuestion(btn.dataset.q);
+  });
+})();
+</script>
+</body>
+</html>
