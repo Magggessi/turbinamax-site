@@ -1,0 +1,38 @@
+<svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="TURBINA MAX">
+  <defs>
+    <linearGradient id="bodyGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#4C84F2"/>
+      <stop offset="100%" stop-color="#2F6FED"/>
+    </linearGradient>
+    <linearGradient id="flameGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F25C66"/>
+      <stop offset="100%" stop-color="#E63946"/>
+    </linearGradient>
+  </defs>
+
+  <!-- exhaust / turbine speed chevrons -->
+  <path d="M48 84 L60 96 L72 84 L60 90 Z" fill="url(#flameGrad)" opacity="0.45"/>
+  <path d="M51 76 L60 87 L69 76 L60 81 Z" fill="url(#flameGrad)" opacity="0.7"/>
+  <path d="M54 68 L60 78 L66 68 L60 72 Z" fill="url(#flameGrad)"/>
+
+  <!-- fins -->
+  <path d="M44 60 L34 76 L48 70 Z" fill="#E63946"/>
+  <path d="M76 60 L86 76 L72 70 Z" fill="#E63946"/>
+
+  <!-- rocket body -->
+  <path d="M60 14
+           C70 14 76 30 76 46
+           L76 66
+           C76 70 72 72 60 72
+           C48 72 44 70 44 66
+           L44 46
+           C44 30 50 14 60 14 Z"
+        fill="url(#bodyGrad)"/>
+
+  <!-- nose highlight -->
+  <path d="M60 14 C68 14 73 26 75 38 L60 38 Z" fill="#6E9BFF" opacity="0.55"/>
+
+  <!-- window -->
+  <circle cx="60" cy="40" r="9" fill="#0a1322"/>
+  <circle cx="60" cy="40" r="5.5" fill="#EAF1F8"/>
+</svg>
