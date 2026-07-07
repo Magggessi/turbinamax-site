@@ -738,16 +738,22 @@
 
   function handlePlanoDeMetas(text){
     const nq = normalize(text);
-    const temIntencao = /(ganhar|ganho|bater|chegar a|chegar em|alcancar|conquistar|preciso de|meta de|fazer)/.test(nq);
-    if (!temIntencao) return false;
     const alvo = parsePontosAlvo(text);
-    if (!alvo) return false;
-    const comPrazo = /(final do ano|fim do ano|ate dezembro|esse ano)/.test(nq);
-    setTimeout(() => {
-      addMsg(`Bora traçar um caminho pra bater ${alvo.toLocaleString('pt-BR')} pontos:`, 'bot');
-      renderPlanoCard(alvo, comPrazo);
-    }, 380);
-    return true;
+    const hasMetaWord = /\bmetas?\b/.test(nq);
+    const hasGoalVerb = /(ganh|\bbat|chega|alcanc|conquist|preciso de)/.test(nq);
+    if (alvo && (hasGoalVerb || hasMetaWord)) {
+      const comPrazo = /(final do ano|fim do ano|ate dezembro|esse ano)/.test(nq);
+      setTimeout(() => {
+        addMsg(`Bora traçar um caminho pra bater ${alvo.toLocaleString('pt-BR')} pontos:`, 'bot');
+        renderPlanoCard(alvo, comPrazo);
+      }, 380);
+      return true;
+    }
+    if (hasMetaWord && !alvo) {
+      setTimeout(() => addMsg('Me conta quantos pontos é a sua meta — por exemplo: "quero bater 5.000 pontos até o final do ano" — que eu calculo um caminho pra chegar lá.', 'bot'), 380);
+      return true;
+    }
+    return false;
   }
 
   function handleQuestion(text){
