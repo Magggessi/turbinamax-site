@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TURBINA MAX — Engajamento que gera recompensas.</title>
-<meta name="description" content="Programa de Pontos TURBINA MAX. Pergunte para a StaffAni, acompanhe seu saldo e registre suas ações.">
+<meta name="description" content="Programa de Pontos TURBINA MAX. Pergunte, registre uma ação ou entre — tudo em uma única barra.">
 <link rel="icon" href="logo.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -43,15 +43,16 @@
     font-family:'Inter',system-ui,sans-serif;
     transition:background .3s ease, color .3s ease;
     -webkit-font-smoothing:antialiased;
+    min-height:100vh;
   }
   .display{font-family:'Space Grotesk',system-ui,sans-serif;}
   a{color:inherit;text-decoration:none;}
   img,svg{display:block;}
   button{font-family:inherit;}
-  .wrap{max-width:980px;margin:0 auto;padding:0 24px;}
+  .wrap{max-width:680px;margin:0 auto;padding:0 24px;}
 
   header.site{position:sticky;top:0;z-index:60;background:color-mix(in srgb, var(--bg) 88%, transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
-  header.site .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;}
+  header.site .wrap{max-width:900px;display:flex;align-items:center;justify-content:space-between;height:68px;}
   .brand{display:flex;align-items:center;gap:10px;}
   .brand img{width:30px;height:30px;}
   .brand span{font-family:'Space Grotesk';font-weight:700;font-size:17px;letter-spacing:.01em;}
@@ -63,12 +64,13 @@
   .btn:active{transform:scale(.97);}
   .btn-primary{background:var(--blue);color:#fff;box-shadow:0 6px 18px rgba(47,111,237,.3);}
   .btn-primary:hover{box-shadow:0 8px 22px rgba(47,111,237,.42);}
+  .btn-primary:disabled{opacity:.6;cursor:default;box-shadow:none;}
   .btn-ghost{background:transparent;border-color:var(--line);color:var(--ink);}
   .btn-ghost:hover{border-color:var(--blue);}
   .btn-sm{padding:7px 14px;font-size:13px;}
   .btn-danger-outline{background:transparent;border-color:var(--red);color:var(--red);}
 
-  .points-pill{display:flex;align-items:center;gap:6px;background:var(--blue-soft);color:var(--blue-deep);padding:8px 14px;border-radius:999px;font-weight:700;font-size:13.5px;}
+  .points-pill{display:flex;align-items:center;gap:6px;background:var(--blue-soft);color:var(--blue-deep);padding:8px 14px;border-radius:999px;font-weight:700;font-size:13.5px;white-space:nowrap;}
   [data-theme="dark"] .points-pill{color:#9DBBFF;}
   .avatar-btn{position:relative;}
   .avatar{width:36px;height:36px;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;cursor:pointer;border:none;}
@@ -79,14 +81,8 @@
   .menu-divider{height:1px;background:var(--line);margin:6px 4px;}
   .menu-email{padding:8px 12px;font-size:12px;color:var(--grey-soft);}
 
-  .hero{padding:96px 0 56px;text-align:center;}
-  .hero .rocket{width:84px;height:84px;margin:0 auto 22px;animation:float 5s ease-in-out infinite;}
-  @keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
-  @media (prefers-reduced-motion: reduce){.hero .rocket{animation:none;}}
-  .hero h1{font-family:'Space Grotesk';font-weight:700;font-size:clamp(26px,4vw,38px);margin-bottom:10px;}
-  .hero h1 .max{color:var(--blue);}
-  .hero p{color:var(--grey);font-size:16px;max-width:480px;margin:0 auto 36px;line-height:1.6;}
-
+  /* ---- A única área da index: a barra ---- */
+  .hero-bar{padding:64px 0 40px;}
   .ask-bar{
     max-width:620px;margin:0 auto;display:flex;align-items:center;gap:10px;
     background:var(--panel);border:1px solid var(--line);border-radius:999px;
@@ -95,7 +91,7 @@
   .ask-bar input{flex:1;border:none;background:transparent;outline:none;font-size:15px;color:var(--ink);font-family:'Inter';}
   .ask-bar input::placeholder{color:var(--grey-soft);}
   .ask-send{width:42px;height:42px;border-radius:50%;border:none;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;flex:none;}
-  .ask-chips{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:18px;}
+  .ask-chips{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:18px;max-width:620px;margin-left:auto;margin-right:auto;}
   .chip{border:1px solid var(--line);background:var(--bg);color:var(--ink);padding:8px 14px;border-radius:999px;font-size:13px;cursor:pointer;}
   .chip:hover{border-color:var(--blue);}
 
@@ -105,7 +101,7 @@
   .chat-head{display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid var(--line);}
   .chat-head .dot{width:8px;height:8px;border-radius:50%;background:#34C77B;}
   .chat-head span{font-size:13px;color:var(--grey);font-weight:600;}
-  .chat-area{max-height:320px;overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:12px;}
+  .chat-area{max-height:460px;overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:12px;}
   .msg{max-width:82%;padding:11px 15px;border-radius:14px;font-size:14px;line-height:1.55;text-align:left;}
   .msg.bot{align-self:flex-start;background:var(--bg);border:1px solid var(--line);}
   .msg.user{align-self:flex-end;background:var(--blue);color:#fff;}
@@ -114,24 +110,34 @@
   .msg strong{color:var(--blue-deep);}
   [data-theme="dark"] .msg strong{color:#9DBBFF;}
 
-  section{padding:56px 0;}
-  .section-head{text-align:center;max-width:520px;margin:0 auto 36px;}
-  .section-head .tag{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--red);font-weight:700;margin-bottom:8px;display:block;}
-  .section-head h2{font-family:'Space Grotesk';font-size:clamp(20px,2.8vw,26px);font-weight:700;margin-bottom:8px;}
-  .section-head p{color:var(--grey);font-size:14.5px;line-height:1.6;}
+  /* Cards interativos embutidos no fluxo da conversa (login, registrar ação, minhas ações, aprovações, tabela de pontos...) */
+  .card-inline{align-self:stretch;width:100%;background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:18px;}
 
-  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
-  .step{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px 20px;}
-  .step .num{font-family:'Space Grotesk';font-weight:700;font-size:12px;color:var(--blue);margin-bottom:10px;letter-spacing:.05em;}
-  .step h3{font-size:15.5px;margin-bottom:6px;font-weight:600;}
-  .step p{font-size:13.5px;color:var(--grey);line-height:1.55;}
+  .field{margin-bottom:14px;}
+  .field label{display:block;font-size:13px;font-weight:600;margin-bottom:6px;}
+  .field input[type=text],.field input[type=email],.field select,.field textarea{
+    width:100%;padding:11px 14px;border-radius:10px;border:1px solid var(--line);
+    background:var(--panel);color:var(--ink);font-size:14px;font-family:'Inter';outline:none;
+  }
+  .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--blue);}
+  .field textarea{resize:vertical;min-height:70px;}
+  .field-check{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--grey);margin-bottom:4px;}
+  .error-text{color:var(--red);font-size:12.5px;margin-top:6px;display:none;}
+  .error-text.show{display:block;}
+  .modal-actions{display:flex;gap:10px;margin-top:6px;}
+  .modal-actions .btn{flex:1;justify-content:center;}
+  .file-list{font-size:12.5px;color:var(--grey-soft);margin-top:6px;}
+  .hint{color:var(--grey);font-size:13px;margin-bottom:12px;}
+
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  .step h3{font-size:15px;margin-bottom:6px;font-weight:600;}
+  .step .num{font-family:'Space Grotesk';font-weight:700;font-size:11.5px;color:var(--blue);margin-bottom:8px;letter-spacing:.05em;}
+  .step p{font-size:13px;color:var(--grey);line-height:1.55;}
 
   .points-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
   .point-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:15px 18px;display:flex;align-items:center;justify-content:space-between;gap:10px;}
-  .point-card .label{font-size:13.5px;}
-  .point-card .val{font-family:'Space Grotesk';font-weight:700;font-size:16px;color:var(--blue);white-space:nowrap;}
-  .points-note{text-align:center;color:var(--grey);font-size:13px;margin-top:16px;}
-  .points-note a{color:var(--blue);text-decoration:underline;}
+  .point-card .label{font-size:13px;}
+  .point-card .val{font-family:'Space Grotesk';font-weight:700;font-size:15px;color:var(--blue);white-space:nowrap;}
 
   .redeem-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
   .redeem-card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px;}
@@ -143,13 +149,8 @@
   .callout h4{font-size:14px;margin-bottom:5px;font-weight:700;}
   .callout p{font-size:13.5px;color:var(--ink);opacity:.85;line-height:1.6;}
 
-  #dashboard{display:none;}
-  #dashboard.open{display:block;}
-  .dash-card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:22px;margin-bottom:14px;}
-  .dash-top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:6px;}
-  .dash-top h3{font-family:'Space Grotesk';font-size:16px;}
-  .sub-list{display:flex;flex-direction:column;gap:10px;margin-top:14px;}
-  .sub-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;background:var(--bg);border:1px solid var(--line);border-radius:12px;flex-wrap:wrap;}
+  .sub-list{display:flex;flex-direction:column;gap:10px;}
+  .sub-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;background:var(--panel);border:1px solid var(--line);border-radius:12px;flex-wrap:wrap;}
   .sub-row .meta{font-size:13.5px;}
   .sub-row .meta .acao{font-weight:600;}
   .sub-row .meta .sub{color:var(--grey-soft);font-size:12px;}
@@ -159,45 +160,21 @@
   .badge.recusado{background:var(--red-soft);color:var(--red);}
   [data-theme="dark"] .badge.pendente{background:#3a2c0f;color:#FFD27A;}
   [data-theme="dark"] .badge.aprovado{background:#11331f;color:#5FE0A0;}
-  .empty-note{color:var(--grey-soft);font-size:13.5px;padding:10px 2px;}
+  .empty-note{color:var(--grey-soft);font-size:13.5px;}
 
-  .broker-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px;background:var(--bg);border:1px solid var(--line);border-radius:12px;flex-wrap:wrap;margin-bottom:10px;}
+  .broker-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px;background:var(--panel);border:1px solid var(--line);border-radius:12px;flex-wrap:wrap;margin-bottom:10px;}
+  .broker-row:last-child{margin-bottom:0;}
   .broker-actions{display:flex;gap:8px;}
 
-  footer{border-top:1px solid var(--line);padding:36px 0;margin-top:10px;}
-  .footer-inner{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:18px;}
-  .footer-brand{display:flex;align-items:center;gap:10px;}
-  .footer-brand img{width:24px;height:24px;}
-  .footer-brand .col span{display:block;}
-  .footer-brand .name{font-family:'Space Grotesk';font-weight:700;font-size:14px;}
-  .footer-brand .meta{font-size:12.5px;color:var(--grey);}
-  .footer-note{font-size:12.5px;color:var(--grey-soft);max-width:340px;text-align:right;line-height:1.6;}
-
-  .overlay{position:fixed;inset:0;background:rgba(10,15,25,.5);display:none;align-items:center;justify-content:center;z-index:100;padding:20px;}
-  .overlay.open{display:flex;}
-  .modal{background:var(--bg);border-radius:20px;max-width:420px;width:100%;padding:26px;box-shadow:var(--shadow);max-height:88vh;overflow-y:auto;}
-  .modal h3{font-family:'Space Grotesk';font-size:18px;margin-bottom:6px;}
-  .modal p.hint{color:var(--grey);font-size:13.5px;margin-bottom:18px;}
-  .field{margin-bottom:14px;}
-  .field label{display:block;font-size:13px;font-weight:600;margin-bottom:6px;}
-  .field input[type=text],.field input[type=email],.field select,.field textarea{
-    width:100%;padding:11px 14px;border-radius:10px;border:1px solid var(--line);
-    background:var(--panel);color:var(--ink);font-size:14px;font-family:'Inter';outline:none;
-  }
-  .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--blue);}
-  .field textarea{resize:vertical;min-height:70px;}
-  .field-check{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--grey);}
-  .error-text{color:var(--red);font-size:12.5px;margin-top:6px;display:none;}
-  .error-text.show{display:block;}
-  .modal-actions{display:flex;gap:10px;margin-top:18px;}
-  .modal-actions .btn{flex:1;justify-content:center;}
-  .file-list{font-size:12.5px;color:var(--grey-soft);margin-top:6px;}
+  footer{border-top:1px solid var(--line);padding:28px 0;margin-top:40px;}
+  .footer-inner{display:flex;justify-content:center;align-items:center;gap:10px;}
+  .footer-inner img{width:20px;height:20px;}
+  .footer-inner span{font-size:12.5px;color:var(--grey-soft);}
 
   @media (max-width:760px){
     .steps,.points-grid,.redeem-grid{grid-template-columns:1fr;}
-    .footer-inner{flex-direction:column;}
-    .footer-note{text-align:left;}
     .ask-bar{padding-left:16px;}
+    .hero-bar{padding:40px 0 28px;}
   }
 </style>
 </head>
@@ -214,10 +191,6 @@
         <svg id="themeIcon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg>
       </button>
 
-      <div id="loggedOutArea">
-        <button class="btn btn-primary" id="openLogin">Entrar</button>
-      </div>
-
       <div id="loggedInArea" style="display:none;align-items:center;gap:10px;">
         <span class="points-pill" id="pointsPill">⚡ 0 pts</span>
         <div class="avatar-btn">
@@ -226,7 +199,8 @@
             <div class="menu-email" id="menuEmail"></div>
             <div class="menu-divider"></div>
             <button class="menu-item" id="menuRegister">📝 Registrar ação</button>
-            <button class="menu-item" id="menuBroker" style="display:none;">🧭 Painel do broker</button>
+            <button class="menu-item" id="menuMinhasAcoes">📋 Minhas ações</button>
+            <button class="menu-item" id="menuBroker" style="display:none;">🧭 Aprovações pendentes</button>
             <div class="menu-divider"></div>
             <button class="menu-item" id="menuLogout">Sair</button>
           </div>
@@ -236,24 +210,15 @@
   </div>
 </header>
 
-<section class="hero">
+<section class="hero-bar">
   <div class="wrap">
-    <img src="logo.svg" alt="TURBINA MAX" class="rocket">
-    <h1>Toda ação vira ponto.<br>Toda dúvida vira <span class="max">resposta.</span></h1>
-    <p>Capte, venda, indique, treine — acompanhe seu saldo e tire dúvidas com a StaffAni a qualquer hora.</p>
-
     <div class="ask-bar">
-      <input type="text" id="chatInput" placeholder="Pergunte algo sobre o programa de pontos...">
+      <input type="text" id="chatInput" placeholder="Pergunte algo, registre uma ação ou digite seu e-mail pra entrar...">
       <button class="ask-send" id="sendBtn" aria-label="Enviar">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
       </button>
     </div>
-    <div class="ask-chips" id="chipsRow">
-      <button class="chip" data-q="Como funciona o programa?">Como funciona?</button>
-      <button class="chip" data-q="Como eu ganho pontos?">Como ganho pontos?</button>
-      <button class="chip" data-q="Como faço pra resgatar meus pontos?">Como resgato?</button>
-      <button class="chip" data-q="Onde vejo o catálogo de recompensas da minha franquia?">Catálogo da franquia</button>
-    </div>
+    <div class="ask-chips" id="chipsRow"></div>
 
     <div id="chatPanel">
       <div class="chat-card">
@@ -264,130 +229,12 @@
   </div>
 </section>
 
-<section id="dashboard">
-  <div class="wrap">
-    <div class="dash-card">
-      <div class="dash-top">
-        <h3>Minhas solicitações</h3>
-        <button class="btn btn-primary btn-sm" id="dashRegisterBtn">+ Registrar ação</button>
-      </div>
-      <div class="sub-list" id="mySubmissions"></div>
-    </div>
-
-    <div class="dash-card" id="brokerPanel" style="display:none;">
-      <div class="dash-top"><h3>Painel do broker — aprovações pendentes</h3></div>
-      <div id="brokerList"></div>
-    </div>
-  </div>
-</section>
-
-<section id="como-funciona">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="tag">O ciclo</span>
-      <h2>Como funciona, na prática</h2>
-      <p>Três passos entre a sua ação e o ponto aprovado no seu saldo.</p>
-    </div>
-    <div class="steps">
-      <div class="step"><div class="num">01 · AÇÃO</div><h3>Você registra a ação</h3><p>Capta, vende, indica ou treina — e registra com o comprovante, quando exigido.</p></div>
-      <div class="step"><div class="num">02 · APROVAÇÃO</div><h3>O broker confere</h3><p>A solicitação entra na fila do broker/staff da franquia, que aprova ou recusa com base no comprovante.</p></div>
-      <div class="step"><div class="num">03 · CRÉDITO</div><h3>Pontos no seu saldo</h3><p>Aprovado, o ponto entra direto no seu saldo — visível aqui mesmo, a qualquer momento.</p></div>
-    </div>
-  </div>
-</section>
-
-<section id="pontos">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="tag">Tabela de pontos</span>
-      <h2>Principais formas de pontuar</h2>
-      <p>Resumo das ações com maior peso no programa.</p>
-    </div>
-    <div class="points-grid" id="pointsGrid"></div>
-    <p class="points-note">Critérios completos de validação: pergunte pra <a href="#" id="askLinkPontos">StaffAni</a> ou veja o regulamento da sua franquia.</p>
-  </div>
-</section>
-
-<section id="resgate">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="tag">Recompensas</span>
-      <h2>Resgate de pontos</h2>
-      <p>Pontos têm validade até 31/12 do ciclo vigente.</p>
-    </div>
-    <div class="redeem-grid">
-      <div class="redeem-card"><h3>Saque via Pix</h3><p>Resgate a partir de 500 pontos acumulados, direto na conta cadastrada.</p><div class="eq">1 ponto = R$ 0,05</div></div>
-      <div class="redeem-card"><h3>Serviços e materiais da franquia</h3><p>Troque por produtos, serviços e materiais gráficos do catálogo da sua franquia.</p><div class="eq">1 ponto = R$ 0,20 · mínimo 500 pts</div></div>
-      <div class="callout">
-        <div class="ico">!</div>
-        <div>
-          <h4>Sua franquia ainda não tem catálogo cadastrado?</h4>
-          <p>Se você não encontrar o catálogo disponível, a troca de pontos deve ser <strong>solicitada diretamente ao broker da sua agência</strong>, que define e libera as opções de resgate localmente.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <footer>
   <div class="wrap footer-inner">
-    <div class="footer-brand">
-      <img src="logo.svg" alt="">
-      <div class="col">
-        <span class="name">TURBINA MAX</span>
-        <span class="meta">Engajamento que gera recompensas.</span>
-      </div>
-    </div>
-    <div class="footer-note">
-      Programa de pontos para franquias imobiliárias. Cada franquia participante define seu próprio regulamento e o broker responsável pelas aprovações.<br>
-      Dúvidas? Pergunte para a StaffAni ou fale com o broker da sua franquia.
-    </div>
+    <img src="logo.svg" alt="">
+    <span>TURBINA MAX — Engajamento que gera recompensas.</span>
   </div>
 </footer>
-
-<div class="overlay" id="loginOverlay">
-  <div class="modal">
-    <h3>Entrar no TURBINA MAX</h3>
-    <p class="hint">Acesso restrito a e-mails corporativos <strong>@remax.com.br</strong>.</p>
-    <div class="field">
-      <label for="loginEmail">E-mail</label>
-      <input type="email" id="loginEmail" placeholder="seunome@remax.com.br">
-      <div class="error-text" id="loginError">Apenas e-mails @remax.com.br podem acessar o programa.</div>
-    </div>
-    <label class="field-check">
-      <input type="checkbox" id="loginAsBroker">
-      Entrar como broker/admin desta franquia (modo de demonstração)
-    </label>
-    <div class="modal-actions">
-      <button class="btn btn-ghost" id="cancelLogin">Cancelar</button>
-      <button class="btn btn-primary" id="confirmLogin">Entrar</button>
-    </div>
-  </div>
-</div>
-
-<div class="overlay" id="registerOverlay">
-  <div class="modal">
-    <h3>Registrar ação</h3>
-    <p class="hint">Sua solicitação vai para a fila de aprovação do broker da franquia.</p>
-    <div class="field">
-      <label for="acaoSelect">Ação realizada</label>
-      <select id="acaoSelect"></select>
-    </div>
-    <div class="field" id="proofField">
-      <label for="proofInput">Comprovante (PDF, imagem...)</label>
-      <input type="file" id="proofInput" multiple>
-      <div class="file-list" id="fileList"></div>
-    </div>
-    <div class="field">
-      <label for="obsInput">Observação (opcional)</label>
-      <textarea id="obsInput" placeholder="Algum detalhe adicional sobre a ação..."></textarea>
-    </div>
-    <div class="modal-actions">
-      <button class="btn btn-ghost" id="cancelRegister">Cancelar</button>
-      <button class="btn btn-primary" id="confirmRegister">Enviar para aprovação</button>
-    </div>
-  </div>
-</div>
 
 <script>
 (function(){
@@ -400,34 +247,25 @@
   applyTheme(localStorage.getItem('tm_theme') || 'light');
   themeToggle.addEventListener('click', () => applyTheme(body.getAttribute('data-theme')==='dark'?'light':'dark'));
 
+  /* ---------- Tabela de pontos (Regulamento v3.0 + adições) ---------- */
   const ACTIONS = [
+    { id:'c7', label:'Participação na C7', pontos:300, proof:true },
     { id:'captacao', label:'Captação validada (CRE + Estudo de Mercado)', pontos:200, proof:true },
     { id:'indicacao', label:'Indicação de novo associado com contrato assinado', pontos:200, proof:true },
-    { id:'renovacao', label:'Renovação de exclusividade sem quebra', pontos:100, proof:true },
-    { id:'mentoria', label:'Mentoria formal a associado em onboarding', pontos:60, proof:false },
+    { id:'credito_correspondente', label:'Crédito imobiliário do comprador levado aos correspondentes bancários parceiros', pontos:100, proof:true },
+    { id:'despachantoria', label:'Despachantoria encaminhada aos parceiros da franquia', pontos:100, proof:true },
     { id:'treinamento_realizado', label:'Realizar treinamento para associados', pontos:50, proof:false },
     { id:'aniversario', label:'Aniversário de associação (por ano completo)', pontos:50, proof:false },
-    { id:'indicacao_cruzada', label:'Indicação cruzada com negócio fechado', pontos:40, proof:true },
+    { id:'renovacao', label:'Renovação de exclusividade sem quebra', pontos:50, proof:true },
+    { id:'certificado_universidade', label:'Certificado de curso concluído na Universidade RE/MAX', pontos:50, proof:true },
+    { id:'r3', label:'Participação na R3', pontos:50, proof:true },
+    { id:'avaliacao_google', label:'Avaliação 5 estrelas no Google (cliente pós-venda)', pontos:30, proof:true },
+    { id:'presenca', label:'Presença em treinamento (check-in)', pontos:30, proof:false },
     { id:'venda', label:'Venda de imóvel concluída', pontos:20, proof:true },
-    { id:'presenca', label:'Presença em treinamento (check-in)', pontos:10, proof:false },
+    { id:'postagem', label:'Postagem institucional aprovada nas redes sociais (máx. 30 pts/mês)', pontos:10, proof:true },
   ];
 
-  const pointsGrid = document.getElementById('pointsGrid');
-  ACTIONS.slice(0,8).forEach(a => {
-    const div = document.createElement('div');
-    div.className = 'point-card';
-    div.innerHTML = `<span class="label">${a.label}</span><span class="val">${a.pontos} pts</span>`;
-    pointsGrid.appendChild(div);
-  });
-
-  const acaoSelect = document.getElementById('acaoSelect');
-  ACTIONS.forEach(a => {
-    const opt = document.createElement('option');
-    opt.value = a.id;
-    opt.textContent = `${a.label} — ${a.pontos} pts`;
-    acaoSelect.appendChild(opt);
-  });
-
+  /* ---------- Camada de dados (demo em localStorage — pendente integração Supabase) ---------- */
   const USERS_KEY = 'tm_users';
   const SUB_KEY = 'tm_submissions';
   const SESSION_KEY = 'tm_session';
@@ -446,130 +284,6 @@
     return users[email];
   }
 
-  const loggedOutArea = document.getElementById('loggedOutArea');
-  const loggedInArea = document.getElementById('loggedInArea');
-  const openLogin = document.getElementById('openLogin');
-  const cancelLogin = document.getElementById('cancelLogin');
-  const confirmLogin = document.getElementById('confirmLogin');
-  const loginEmail = document.getElementById('loginEmail');
-  const loginError = document.getElementById('loginError');
-  const loginAsBroker = document.getElementById('loginAsBroker');
-  const pointsPill = document.getElementById('pointsPill');
-  const avatarBtn = document.getElementById('avatarBtn');
-  const userMenu = document.getElementById('userMenu');
-  const menuEmail = document.getElementById('menuEmail');
-  const menuRegister = document.getElementById('menuRegister');
-  const menuBroker = document.getElementById('menuBroker');
-  const menuLogout = document.getElementById('menuLogout');
-  const dashboard = document.getElementById('dashboard');
-  const brokerPanel = document.getElementById('brokerPanel');
-
-  function openOverlay(id){ document.getElementById(id).classList.add('open'); }
-  function closeOverlay(id){ document.getElementById(id).classList.remove('open'); }
-
-  openLogin.addEventListener('click', () => { loginError.classList.remove('show'); openOverlay('loginOverlay'); });
-  cancelLogin.addEventListener('click', () => closeOverlay('loginOverlay'));
-
-  confirmLogin.addEventListener('click', () => {
-    const email = loginEmail.value.trim().toLowerCase();
-    if (!email.endsWith('@remax.com.br')) {
-      loginError.classList.add('show');
-      return;
-    }
-    const role = loginAsBroker.checked ? 'broker' : 'corretor';
-    ensureUser(email);
-    saveSession({ email, role });
-    closeOverlay('loginOverlay');
-    renderAuthState();
-  });
-
-  avatarBtn.addEventListener('click', (e) => { e.stopPropagation(); userMenu.classList.toggle('open'); });
-  document.addEventListener('click', () => userMenu.classList.remove('open'));
-
-  menuLogout.addEventListener('click', () => { clearSession(); renderAuthState(); });
-  menuRegister.addEventListener('click', () => { userMenu.classList.remove('open'); openRegisterModal(); });
-  document.getElementById('dashRegisterBtn').addEventListener('click', openRegisterModal);
-  menuBroker.addEventListener('click', () => {
-    userMenu.classList.remove('open');
-    document.getElementById('dashboard').scrollIntoView({ behavior:'smooth' });
-  });
-
-  function initials(email){ return email.split('@')[0].slice(0,2).toUpperCase(); }
-
-  function renderAuthState(){
-    const session = getSession();
-    if (!session) {
-      loggedOutArea.style.display = 'block';
-      loggedInArea.style.display = 'none';
-      dashboard.classList.remove('open');
-      return;
-    }
-    const user = ensureUser(session.email);
-    loggedOutArea.style.display = 'none';
-    loggedInArea.style.display = 'flex';
-    pointsPill.textContent = `⚡ ${user.points} pts`;
-    avatarBtn.textContent = initials(session.email);
-    menuEmail.textContent = session.email;
-    menuBroker.style.display = session.role === 'broker' ? 'flex' : 'none';
-    brokerPanel.style.display = session.role === 'broker' ? 'block' : 'none';
-    dashboard.classList.add('open');
-    renderMySubmissions();
-    renderBrokerList();
-  }
-
-  function renderMySubmissions(){
-    const session = getSession();
-    const list = document.getElementById('mySubmissions');
-    list.innerHTML = '';
-    if (!session) return;
-    const subs = getSubs().filter(s => s.email === session.email).sort((a,b) => b.date - a.date);
-    if (subs.length === 0) {
-      list.innerHTML = '<div class="empty-note">Nenhuma ação registrada ainda. Clique em "Registrar ação" pra enviar a primeira.</div>';
-      return;
-    }
-    subs.forEach(s => {
-      const row = document.createElement('div');
-      row.className = 'sub-row';
-      row.innerHTML = `
-        <div class="meta">
-          <div class="acao">${s.acaoLabel}</div>
-          <div class="sub">${s.pontos} pts · ${new Date(s.date).toLocaleDateString('pt-BR')}${s.comprovantes.length ? ' · ' + s.comprovantes.length + ' anexo(s)' : ''}</div>
-        </div>
-        <span class="badge ${s.status}">${s.status}</span>
-      `;
-      list.appendChild(row);
-    });
-  }
-
-  function renderBrokerList(){
-    const session = getSession();
-    const wrap = document.getElementById('brokerList');
-    wrap.innerHTML = '';
-    if (!session || session.role !== 'broker') return;
-    const pending = getSubs().filter(s => s.status === 'pendente').sort((a,b) => a.date - b.date);
-    if (pending.length === 0) {
-      wrap.innerHTML = '<div class="empty-note">Nenhuma solicitação pendente no momento.</div>';
-      return;
-    }
-    pending.forEach(s => {
-      const row = document.createElement('div');
-      row.className = 'broker-row';
-      row.innerHTML = `
-        <div class="meta">
-          <div class="acao">${s.acaoLabel}</div>
-          <div class="sub">${s.email} · ${s.pontos} pts · ${new Date(s.date).toLocaleDateString('pt-BR')}${s.comprovantes.length ? ' · ' + s.comprovantes.join(', ') : ' · sem anexo'}</div>
-        </div>
-        <div class="broker-actions">
-          <button class="btn btn-primary btn-sm" data-approve="${s.id}">Aprovar</button>
-          <button class="btn btn-danger-outline btn-sm" data-reject="${s.id}">Recusar</button>
-        </div>
-      `;
-      wrap.appendChild(row);
-    });
-    wrap.querySelectorAll('[data-approve]').forEach(btn => btn.addEventListener('click', () => decideSubmission(btn.dataset.approve, 'aprovado')));
-    wrap.querySelectorAll('[data-reject]').forEach(btn => btn.addEventListener('click', () => decideSubmission(btn.dataset.reject, 'recusado')));
-  }
-
   function decideSubmission(id, status){
     const subs = getSubs();
     const sub = subs.find(s => s.id === id);
@@ -582,88 +296,53 @@
       users[sub.email].points += sub.pontos;
       saveUsers(users);
     }
-    renderAuthState();
   }
 
-  const proofField = document.getElementById('proofField');
-  const proofInput = document.getElementById('proofInput');
-  const fileList = document.getElementById('fileList');
+  /* ---------- Header: pill de pontos + menu (só aparece logado) ---------- */
+  const loggedInArea = document.getElementById('loggedInArea');
+  const pointsPill = document.getElementById('pointsPill');
+  const avatarBtn = document.getElementById('avatarBtn');
+  const userMenu = document.getElementById('userMenu');
+  const menuEmail = document.getElementById('menuEmail');
+  const menuRegister = document.getElementById('menuRegister');
+  const menuMinhasAcoes = document.getElementById('menuMinhasAcoes');
+  const menuBroker = document.getElementById('menuBroker');
+  const menuLogout = document.getElementById('menuLogout');
 
-  function updateProofVisibility(){
-    const a = ACTIONS.find(x => x.id === acaoSelect.value);
-    proofField.style.display = a && a.proof ? 'block' : 'none';
-  }
-  acaoSelect.addEventListener('change', updateProofVisibility);
+  avatarBtn.addEventListener('click', (e) => { e.stopPropagation(); userMenu.classList.toggle('open'); });
+  document.addEventListener('click', () => userMenu.classList.remove('open'));
 
-  proofInput.addEventListener('change', () => {
-    const names = Array.from(proofInput.files).map(f => f.name);
-    fileList.textContent = names.join(', ');
-  });
+  function initials(email){ return email.split('@')[0].slice(0,2).toUpperCase(); }
 
-  function openRegisterModal(){
+  function renderAuthState(){
     const session = getSession();
-    if (!session) { openOverlay('loginOverlay'); return; }
-    acaoSelect.selectedIndex = 0;
-    updateProofVisibility();
-    proofInput.value = '';
-    fileList.textContent = '';
-    document.getElementById('obsInput').value = '';
-    openOverlay('registerOverlay');
+    if (!session) { loggedInArea.style.display = 'none'; return; }
+    const user = ensureUser(session.email);
+    loggedInArea.style.display = 'flex';
+    pointsPill.textContent = `⚡ ${user.points} pts`;
+    avatarBtn.textContent = initials(session.email);
+    menuEmail.textContent = session.email;
+    menuBroker.style.display = session.role === 'broker' ? 'flex' : 'none';
   }
-  document.getElementById('cancelRegister').addEventListener('click', () => closeOverlay('registerOverlay'));
 
-  document.getElementById('confirmRegister').addEventListener('click', () => {
-    const session = getSession();
-    if (!session) return;
-    const a = ACTIONS.find(x => x.id === acaoSelect.value);
-    const names = Array.from(proofInput.files).map(f => f.name);
-    const subs = getSubs();
-    subs.push({
-      id: 'sub_' + Date.now(),
-      email: session.email,
-      acao: a.id,
-      acaoLabel: a.label,
-      pontos: a.pontos,
-      comprovantes: names,
-      obs: document.getElementById('obsInput').value,
-      status: 'pendente',
-      date: Date.now(),
-    });
-    saveSubs(subs);
-    closeOverlay('registerOverlay');
-    renderAuthState();
-    document.getElementById('dashboard').scrollIntoView({ behavior:'smooth' });
-  });
+  menuRegister.addEventListener('click', () => { userMenu.classList.remove('open'); handleCommand('registrar'); });
+  menuMinhasAcoes.addEventListener('click', () => { userMenu.classList.remove('open'); handleCommand('minhas_acoes'); });
+  menuBroker.addEventListener('click', () => { userMenu.classList.remove('open'); handleCommand('aprovacoes'); });
+  menuLogout.addEventListener('click', () => { userMenu.classList.remove('open'); handleCommand('sair'); });
 
+  /* ---------- A barra: chat + chips + cards embutidos ---------- */
   const chatArea = document.getElementById('chatArea');
   const chatPanel = document.getElementById('chatPanel');
   const chatInput = document.getElementById('chatInput');
   const sendBtn = document.getElementById('sendBtn');
   const chipsRow = document.getElementById('chipsRow');
 
-  const KB = [
-    { kw: ['oi','ola','olá','bom dia','boa tarde','boa noite'],
-      a: 'Oi! Posso te ajudar a entender o programa, como ganhar pontos, validar uma captação ou resgatar suas recompensas. O que você quer saber?' },
-    { kw: ['o que e','o que é','como funciona o programa','sobre o turbina'],
-      a: '<strong>TURBINA MAX</strong> é o programa de pontos da sua franquia. Você acumula pontos realizando ações como captações, vendas, indicações e treinamentos. Cada ação enviada passa pela aprovação do broker antes de virar ponto no seu saldo.' },
-    { kw: ['ganhar ponto','ganho ponto','como pontuar','tabela de ponto','formas de pontuar','o que da ponto','o que dá ponto'],
-      a: 'Principais formas de pontuar:<ul><li>Captação validada (CRE + Estudo de Mercado) — 200 pts</li><li>Indicação de novo associado — 200 pts</li><li>Renovação de exclusividade — 100 pts</li><li>Treinamento para associados — 50 pts</li><li>Venda de imóvel concluída — 20 pts</li></ul>Tudo isso passa por aprovação do broker depois de registrado.' },
-    { kw: ['captacao validada','captação validada','cre','estudo de mercado','200 ponto','honorario','honorário','180 dia','preco de mercado','preço de mercado'],
-      a: 'Pra captação valer 200 pontos, anexe o <strong>Estudo de Mercado (ACM)</strong> e o <strong>CRE</strong> ao registrar a ação. O broker confere prazo (mín. 180 dias), honorários (6%, piso de R$ 15.000) e preço dentro da faixa do estudo antes de aprovar.' },
-    { kw: ['resgatar','resgate','trocar ponto','sacar','pix','quanto vale','equivalencia','equivalência'],
-      a: 'Resgate a partir de <strong>500 pontos</strong>. Pix: 1 ponto = R$ 0,05. Produtos/serviços da franquia: 1 ponto = R$ 0,20.' },
-    { kw: ['catalogo','catálogo','recompensa','premio','prêmio'],
-      a: 'O catálogo fica disponível na sua franquia. Se ainda não tiver um cadastrado, solicite a troca direto com o <strong>broker da sua agência</strong>.' },
-    { kw: ['validade','vencer','vence','expira'],
-      a: 'Os pontos valem até <strong>31 de dezembro</strong> do ciclo vigente.' },
-    { kw: ['elegibilidade','participar','fee','taxa de franquia'],
-      a: 'O critério de elegibilidade contínua é estar com o <strong>fee em dia</strong> até 31/12. CRECI em dia gera pontos, mas não é exigência de elegibilidade.' },
-    { kw: ['aprovacao','aprovação','aprovar','broker aprova','quem aprova'],
-      a: 'Toda ação registrada entra numa fila e é revisada pelo broker/staff da franquia antes de virar ponto. Você acompanha o status (pendente, aprovado, recusado) no seu painel.' },
-    { kw: ['login','entrar','email','e-mail'],
-      a: 'O acesso é feito com e-mail corporativo terminado em <strong>@remax.com.br</strong>. Clique em "Entrar" no topo da página.' },
-  ];
-  const FALLBACK = 'Ainda não tenho certeza sobre isso. Posso ajudar com pontuação, aprovação de captação, resgate ou catálogo de recompensas.';
+  function ensureChatOpen(){
+    if (!chatPanel.classList.contains('open')) {
+      chatPanel.classList.add('open');
+      addMsg('Oi! Eu sou a StaffAni 👋 Pergunte qualquer coisa, peça pra registrar uma ação ou faça login — tudo bem aqui, nessa barra.', 'bot');
+    }
+  }
 
   function addMsg(text, who){
     const div = document.createElement('div');
@@ -672,32 +351,335 @@
     chatArea.appendChild(div);
     chatArea.scrollTop = chatArea.scrollHeight;
   }
+
+  function addCard(el){
+    chatArea.appendChild(el);
+    chatArea.scrollTop = chatArea.scrollHeight;
+  }
+
   function normalize(s){ return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+
+  /* ---- Cards ---- */
+  function renderLoginCard(){
+    const card = document.createElement('div');
+    card.className = 'card-inline';
+    card.innerHTML = `
+      <div class="field">
+        <label>E-mail corporativo</label>
+        <input type="email" class="loginEmailInput" placeholder="seunome@remax.com.br">
+        <div class="error-text loginErrorMsg">Apenas e-mails @remax.com.br podem acessar o programa.</div>
+      </div>
+      <label class="field-check"><input type="checkbox" class="loginBrokerCheck"> Entrar como broker/admin desta franquia (modo de demonstração)</label>
+      <div class="modal-actions"><button class="btn btn-primary loginSubmitBtn">Entrar</button></div>
+    `;
+    addCard(card);
+    const emailInput = card.querySelector('.loginEmailInput');
+    const errorMsg = card.querySelector('.loginErrorMsg');
+    const brokerCheck = card.querySelector('.loginBrokerCheck');
+    const submitBtn = card.querySelector('.loginSubmitBtn');
+    function submit(){
+      const email = emailInput.value.trim().toLowerCase();
+      if (!email.endsWith('@remax.com.br')) { errorMsg.classList.add('show'); return; }
+      errorMsg.classList.remove('show');
+      const role = brokerCheck.checked ? 'broker' : 'corretor';
+      ensureUser(email);
+      saveSession({ email, role });
+      emailInput.disabled = true; brokerCheck.disabled = true; submitBtn.disabled = true; submitBtn.textContent = 'Conectado ✓';
+      renderAuthState();
+      refreshChips();
+      addMsg(`Login feito como <strong>${email}</strong>${role==='broker' ? ' (broker)' : ''}. Seu saldo já aparece no topo da página.`, 'bot');
+    }
+    submitBtn.addEventListener('click', submit);
+    emailInput.addEventListener('keydown', e => { if (e.key === 'Enter') submit(); });
+    emailInput.focus();
+  }
+
+  function renderRegisterCard(){
+    const session = getSession();
+    const card = document.createElement('div');
+    card.className = 'card-inline';
+    if (!session) { card.innerHTML = '<div class="empty-note">Entre com seu e-mail pra registrar uma ação.</div>'; addCard(card); return; }
+    const options = ACTIONS.map(a => `<option value="${a.id}">${a.label} — ${a.pontos} pts</option>`).join('');
+    card.innerHTML = `
+      <div class="field">
+        <label>Ação realizada</label>
+        <select class="acaoSelectChat">${options}</select>
+      </div>
+      <div class="field proofFieldChat">
+        <label>Comprovante (PDF, imagem...)</label>
+        <input type="file" class="proofInputChat" multiple>
+        <div class="file-list fileListChat"></div>
+      </div>
+      <div class="field">
+        <label>Observação (opcional)</label>
+        <textarea class="obsInputChat" placeholder="Algum detalhe adicional sobre a ação..."></textarea>
+      </div>
+      <div class="modal-actions"><button class="btn btn-primary confirmRegisterChat">Enviar para aprovação</button></div>
+    `;
+    addCard(card);
+    const select = card.querySelector('.acaoSelectChat');
+    const proofField = card.querySelector('.proofFieldChat');
+    const proofInput = card.querySelector('.proofInputChat');
+    const fileList = card.querySelector('.fileListChat');
+    const obsInput = card.querySelector('.obsInputChat');
+    const submitBtn = card.querySelector('.confirmRegisterChat');
+
+    function updateProof(){ const a = ACTIONS.find(x => x.id === select.value); proofField.style.display = a && a.proof ? 'block' : 'none'; }
+    select.addEventListener('change', updateProof);
+    updateProof();
+    proofInput.addEventListener('change', () => { fileList.textContent = Array.from(proofInput.files).map(f => f.name).join(', '); });
+
+    submitBtn.addEventListener('click', () => {
+      const a = ACTIONS.find(x => x.id === select.value);
+      const names = Array.from(proofInput.files).map(f => f.name);
+      const subs = getSubs();
+      subs.push({ id: 'sub_' + Date.now(), email: session.email, acao: a.id, acaoLabel: a.label, pontos: a.pontos, comprovantes: names, obs: obsInput.value, status: 'pendente', date: Date.now() });
+      saveSubs(subs);
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Enviado ✓';
+      select.disabled = true; proofInput.disabled = true; obsInput.disabled = true;
+      addMsg(`Solicitação de <strong>${a.label}</strong> (${a.pontos} pts) enviada pro broker aprovar.`, 'bot');
+    });
+  }
+
+  function renderSubmissionsCard(){
+    const session = getSession();
+    const card = document.createElement('div');
+    card.className = 'card-inline';
+    if (!session) { card.innerHTML = '<div class="empty-note">Entre com seu e-mail pra ver suas ações.</div>'; addCard(card); return; }
+    const subs = getSubs().filter(s => s.email === session.email).sort((a,b) => b.date - a.date);
+    if (subs.length === 0) {
+      card.innerHTML = '<div class="empty-note">Nenhuma ação registrada ainda. Peça pra "registrar ação" pra enviar a primeira.</div>';
+    } else {
+      const list = document.createElement('div');
+      list.className = 'sub-list';
+      subs.forEach(s => {
+        const row = document.createElement('div');
+        row.className = 'sub-row';
+        row.innerHTML = `
+          <div class="meta">
+            <div class="acao">${s.acaoLabel}</div>
+            <div class="sub">${s.pontos} pts · ${new Date(s.date).toLocaleDateString('pt-BR')}${s.comprovantes.length ? ' · ' + s.comprovantes.length + ' anexo(s)' : ''}</div>
+          </div>
+          <span class="badge ${s.status}">${s.status}</span>
+        `;
+        list.appendChild(row);
+      });
+      card.appendChild(list);
+    }
+    addCard(card);
+  }
+
+  function renderBrokerCard(){
+    const session = getSession();
+    const card = document.createElement('div');
+    card.className = 'card-inline';
+    if (!session || session.role !== 'broker') { card.innerHTML = '<div class="empty-note">Essa área é só pra brokers/admins da franquia.</div>'; addCard(card); return; }
+    function paint(){
+      card.innerHTML = '';
+      const pending = getSubs().filter(s => s.status === 'pendente').sort((a,b) => a.date - b.date);
+      if (pending.length === 0) { card.innerHTML = '<div class="empty-note">Nenhuma solicitação pendente no momento.</div>'; return; }
+      pending.forEach(s => {
+        const row = document.createElement('div');
+        row.className = 'broker-row';
+        row.innerHTML = `
+          <div class="meta">
+            <div class="acao">${s.acaoLabel}</div>
+            <div class="sub">${s.email} · ${s.pontos} pts · ${new Date(s.date).toLocaleDateString('pt-BR')}${s.comprovantes.length ? ' · ' + s.comprovantes.join(', ') : ' · sem anexo'}</div>
+          </div>
+          <div class="broker-actions">
+            <button class="btn btn-primary btn-sm approveBtn">Aprovar</button>
+            <button class="btn btn-danger-outline btn-sm rejectBtn">Recusar</button>
+          </div>
+        `;
+        row.querySelector('.approveBtn').addEventListener('click', () => { decideSubmission(s.id, 'aprovado'); paint(); renderAuthState(); });
+        row.querySelector('.rejectBtn').addEventListener('click', () => { decideSubmission(s.id, 'recusado'); paint(); renderAuthState(); });
+        card.appendChild(row);
+      });
+    }
+    paint();
+    addCard(card);
+  }
+
+  function renderPointsCard(){
+    const card = document.createElement('div');
+    card.className = 'card-inline';
+    const grid = document.createElement('div');
+    grid.className = 'points-grid';
+    ACTIONS.forEach(a => {
+      const div = document.createElement('div');
+      div.className = 'point-card';
+      div.innerHTML = `<span class="label">${a.label}</span><span class="val">${a.pontos} pts</span>`;
+      grid.appendChild(div);
+    });
+    card.appendChild(grid);
+    addCard(card);
+  }
+
+  function renderComoFuncionaCard(){
+    const card = document.createElement('div');
+    card.className = 'card-inline';
+    card.innerHTML = `
+      <div class="steps">
+        <div class="step"><div class="num">01 · AÇÃO</div><h3>Você registra a ação</h3><p>Capta, vende, indica, treina ou participa de eventos — e registra com o comprovante, quando exigido.</p></div>
+        <div class="step"><div class="num">02 · APROVAÇÃO</div><h3>O broker confere</h3><p>A solicitação entra na fila do broker/staff da franquia, que aprova ou recusa com base no comprovante.</p></div>
+        <div class="step"><div class="num">03 · CRÉDITO</div><h3>Pontos no seu saldo</h3><p>Aprovado, o ponto entra direto no seu saldo — visível no topo da página, a qualquer momento.</p></div>
+      </div>`;
+    addCard(card);
+  }
+
+  function renderResgateCard(){
+    const card = document.createElement('div');
+    card.className = 'card-inline';
+    card.innerHTML = `
+      <div class="redeem-grid">
+        <div class="redeem-card"><h3>Saque via Pix</h3><p>Resgate a partir de 500 pontos acumulados, direto na conta cadastrada.</p><div class="eq">1 ponto = R$ 0,05</div></div>
+        <div class="redeem-card"><h3>Serviços e materiais da franquia</h3><p>Troque por produtos, serviços e materiais gráficos do catálogo da sua franquia.</p><div class="eq">1 ponto = R$ 0,20 · mínimo 500 pts</div></div>
+        <div class="callout">
+          <div class="ico">!</div>
+          <div><h4>Sua franquia ainda não tem catálogo cadastrado?</h4><p>Se você não encontrar o catálogo disponível, a troca de pontos deve ser <strong>solicitada diretamente ao broker da sua agência</strong>.</p></div>
+        </div>
+      </div>`;
+    addCard(card);
+  }
+
+  /* ---- Chips dinâmicos (mudam conforme login) ---- */
+  function refreshChips(){
+    const session = getSession();
+    let chips = [];
+    if (!session) {
+      chips = [
+        { q: 'Como funciona o programa?', label: 'Como funciona?' },
+        { q: 'Como eu ganho pontos?', label: 'Tabela de pontos' },
+        { cmd: 'entrar', label: 'Entrar' },
+      ];
+    } else {
+      chips = [
+        { cmd: 'registrar', label: 'Registrar ação' },
+        { cmd: 'minhas_acoes', label: 'Minhas ações' },
+        { q: 'Como eu ganho pontos?', label: 'Tabela de pontos' },
+      ];
+      if (session.role === 'broker') chips.push({ cmd: 'aprovacoes', label: 'Aprovações pendentes' });
+      chips.push({ cmd: 'sair', label: 'Sair' });
+    }
+    chipsRow.innerHTML = '';
+    chips.forEach(c => {
+      const b = document.createElement('button');
+      b.className = 'chip';
+      b.textContent = c.label;
+      b.addEventListener('click', () => { if (c.cmd) handleCommand(c.cmd); else handleQuestion(c.q); });
+      chipsRow.appendChild(b);
+    });
+  }
+
+  function handleCommand(cmd){
+    ensureChatOpen();
+    if (cmd === 'entrar') {
+      if (getSession()) { addMsg('Você já está logado.', 'bot'); return; }
+      addMsg('Entrar', 'user');
+      setTimeout(() => { addMsg('Beleza! Me passa seu e-mail corporativo:', 'bot'); renderLoginCard(); }, 250);
+    } else if (cmd === 'registrar') {
+      addMsg('Registrar ação', 'user');
+      const session = getSession();
+      if (!session) { setTimeout(() => { addMsg('Antes de registrar, preciso que você entre com seu e-mail:', 'bot'); renderLoginCard(); }, 250); return; }
+      setTimeout(() => { addMsg('Qual ação você quer registrar?', 'bot'); renderRegisterCard(); }, 250);
+    } else if (cmd === 'minhas_acoes') {
+      addMsg('Minhas ações', 'user');
+      setTimeout(() => { addMsg('Status das suas últimas solicitações:', 'bot'); renderSubmissionsCard(); }, 250);
+    } else if (cmd === 'aprovacoes') {
+      addMsg('Aprovações pendentes', 'user');
+      setTimeout(() => { addMsg('Solicitações aguardando aprovação:', 'bot'); renderBrokerCard(); }, 250);
+    } else if (cmd === 'sair') {
+      clearSession();
+      addMsg('Sair', 'user');
+      renderAuthState();
+      refreshChips();
+      setTimeout(() => addMsg('Você saiu da sua conta. Até já!', 'bot'), 250);
+    }
+  }
+
+  const KB = [
+    { kw: ['oi','ola','olá','bom dia','boa tarde','boa noite'],
+      a: 'Oi! Posso te ajudar a entender o programa, como ganhar pontos, registrar uma ação ou tirar dúvidas sobre resgate. O que você quer saber?' },
+    { kw: ['o que e','o que é','como funciona o programa','sobre o turbina'],
+      a: '<strong>TURBINA MAX</strong> é o programa de pontos da sua franquia. Você acumula pontos realizando ações como captações, vendas, indicações, treinamentos e parcerias — e cada uma passa pela aprovação do broker antes de virar ponto no seu saldo.', card: 'como_funciona' },
+    { kw: ['ganhar ponto','ganho ponto','como pontuar','tabela de ponto','formas de pontuar','o que da ponto','o que dá ponto'],
+      a: 'Aqui está a tabela completa de como pontuar no TURBINA MAX:', card: 'pontos' },
+    { kw: ['captacao validada','captação validada','cre','estudo de mercado','200 ponto','honorario','honorário','180 dia','preco de mercado','preço de mercado'],
+      a: 'Pra captação valer 200 pontos, anexe o <strong>Estudo de Mercado (ACM)</strong> e o <strong>CRE</strong> ao registrar a ação. O broker confere prazo (mín. 180 dias), honorários (6%, piso de R$ 15.000) e preço dentro da faixa do estudo antes de aprovar.' },
+    { kw: ['credito imobiliario','crédito imobiliário','correspondente bancario','correspondente bancário','financiamento do cliente'],
+      a: 'Levar o crédito imobiliário do seu cliente comprador pra um dos <strong>correspondentes bancários parceiros</strong> da RE/MAX Influencer vale 100 pontos.' },
+    { kw: ['despachante','despachantoria'],
+      a: 'Encaminhar a despachantoria do imóvel pra um dos <strong>parceiros da RE/MAX Influencer</strong> vale 100 pontos.' },
+    { kw: ['c7'],
+      a: 'Participar da C7 vale <strong>300 pontos</strong> — é a maior pontuação isolada do programa.' },
+    { kw: ['r3'],
+      a: 'Participar da R3 vale <strong>50 pontos</strong>.' },
+    { kw: ['universidade remax','universidade re/max','certificado','curso remax','curso re/max'],
+      a: 'Concluir um curso da Universidade RE/MAX e apresentar o certificado vale 50 pontos.' },
+    { kw: ['avaliacao google','avaliação google','5 estrelas','google'],
+      a: 'Conseguir uma avaliação 5 estrelas do seu cliente no Google, no pós-venda, vale 30 pontos.' },
+    { kw: ['resgatar','resgate','trocar ponto','sacar','pix','quanto vale','equivalencia','equivalência','catalogo','catálogo','recompensa','premio','prêmio'],
+      a: 'Resgate a partir de <strong>500 pontos</strong>. Pix: 1 ponto = R$ 0,05. Produtos/serviços da franquia: 1 ponto = R$ 0,20.', card: 'resgate' },
+    { kw: ['validade','vencer','vence','expira'],
+      a: 'Os pontos valem até <strong>31 de dezembro</strong> do ciclo vigente.' },
+    { kw: ['elegibilidade','participar','fee','taxa de franquia'],
+      a: 'O critério de elegibilidade contínua é estar com o <strong>fee em dia</strong> até 31/12.' },
+    { kw: ['aprovacao','aprovação','aprovar','broker aprova','quem aprova'],
+      a: 'Toda ação registrada entra numa fila e é revisada pelo broker/staff da franquia antes de virar ponto. Você acompanha o status (pendente, aprovado, recusado) em "Minhas ações".' },
+  ];
+  const FALLBACK = 'Ainda não tenho certeza sobre isso. Posso ajudar com pontuação, registro de ação, aprovação ou resgate de recompensas.';
+
   function answer(q){
     const nq = normalize(q);
-    let best=null, score=0;
-    KB.forEach(e => { let sc=0; e.kw.forEach(k=>{ if(nq.includes(normalize(k))) sc++; }); if(sc>score){score=sc;best=e;} });
-    return best ? best.a : FALLBACK;
+    let best = null, score = 0;
+    KB.forEach(e => { let sc = 0; e.kw.forEach(k => { if (nq.includes(normalize(k))) sc++; }); if (sc > score) { score = sc; best = e; } });
+    return best || { a: FALLBACK };
   }
+
   function handleQuestion(text){
     if (!text.trim()) return;
-    if (!chatPanel.classList.contains('open')) {
-      chatPanel.classList.add('open');
-      addMsg('Oi! Eu sou a StaffAni 👋 Manda sua dúvida sobre o TURBINA MAX.', 'bot');
-    }
+    ensureChatOpen();
     addMsg(text, 'user');
     chatInput.value = '';
-    setTimeout(() => addMsg(answer(text), 'bot'), 380);
+    const nq = normalize(text);
+
+    if (/\b(entrar|login|fazer log)\b/.test(nq) && !getSession()) {
+      setTimeout(() => { addMsg('Claro! Me passa seu e-mail corporativo:', 'bot'); renderLoginCard(); }, 380);
+      return;
+    }
+    if (/registrar|lancar (uma )?acao|quero pontuar/.test(nq)) {
+      const session = getSession();
+      if (!session) { setTimeout(() => { addMsg('Antes de registrar, preciso que você entre com seu e-mail:', 'bot'); renderLoginCard(); }, 380); return; }
+      setTimeout(() => { addMsg('Qual ação você quer registrar?', 'bot'); renderRegisterCard(); }, 380);
+      return;
+    }
+    if (/minhas acoes|meu status|minhas solicitac/.test(nq) && getSession()) {
+      setTimeout(() => { addMsg('Status das suas últimas solicitações:', 'bot'); renderSubmissionsCard(); }, 380);
+      return;
+    }
+    if (/aprovac/.test(nq) && getSession() && getSession().role === 'broker') {
+      setTimeout(() => { addMsg('Solicitações pendentes de aprovação:', 'bot'); renderBrokerCard(); }, 380);
+      return;
+    }
+    if (/sair|logout|deslogar/.test(nq) && getSession()) {
+      setTimeout(() => handleCommand('sair'), 380);
+      return;
+    }
+
+    const res = answer(text);
+    setTimeout(() => {
+      addMsg(res.a, 'bot');
+      if (res.card === 'pontos') renderPointsCard();
+      if (res.card === 'como_funciona') renderComoFuncionaCard();
+      if (res.card === 'resgate') renderResgateCard();
+    }, 380);
   }
+
   sendBtn.addEventListener('click', () => handleQuestion(chatInput.value));
   chatInput.addEventListener('keydown', e => { if (e.key === 'Enter') handleQuestion(chatInput.value); });
-  chipsRow.addEventListener('click', e => { const b=e.target.closest('.chip'); if(b) handleQuestion(b.dataset.q); });
-  document.getElementById('askLinkPontos').addEventListener('click', e => {
-    e.preventDefault();
-    document.querySelector('.ask-bar').scrollIntoView({ behavior:'smooth', block:'center' });
-    chatInput.focus();
-  });
 
+  refreshChips();
   renderAuthState();
 })();
 </script>
