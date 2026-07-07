@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TURBINA MAX — Engajamento que gera recompensas.</title>
-<meta name="description" content="Programa de Pontos TURBINA MAX. Pergunte, registre uma ação ou entre — tudo em uma única barra.">
+<title>TURBINA MAX 2.0 — Engajamento que gera recompensas.</title>
+<meta name="description" content="Programa de Pontos TURBINA MAX 2.0. Pergunte, registre uma ação ou entre — tudo em uma única barra.">
 <link rel="icon" href="logo.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --blue:#2F6FED;
@@ -45,7 +45,7 @@
     -webkit-font-smoothing:antialiased;
     min-height:100vh;
   }
-  .display{font-family:'Space Grotesk',system-ui,sans-serif;}
+  .display{font-family:'Manrope',system-ui,sans-serif;}
   a{color:inherit;text-decoration:none;}
   img,svg{display:block;}
   button{font-family:inherit;}
@@ -55,8 +55,9 @@
   header.site .wrap{max-width:900px;display:flex;align-items:center;justify-content:space-between;height:68px;}
   .brand{display:flex;align-items:center;gap:10px;}
   .brand img{width:30px;height:30px;}
-  .brand span{font-family:'Space Grotesk';font-weight:700;font-size:17px;letter-spacing:.01em;}
+  .brand span{font-family:'Manrope';font-weight:800;font-size:17px;letter-spacing:-.01em;}
   .brand .a{color:var(--blue);}
+  .v2-badge{font-family:'Manrope';font-weight:800;font-size:10px;letter-spacing:.02em;color:#fff;background:var(--red);border-radius:999px;padding:2px 6px;vertical-align:super;margin-left:2px;}
   .header-right{display:flex;align-items:center;gap:10px;}
   .icon-btn{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--panel);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--ink);}
   .icon-btn:hover{border-color:var(--blue);}
@@ -131,13 +132,13 @@
 
   .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
   .step h3{font-size:15px;margin-bottom:6px;font-weight:600;}
-  .step .num{font-family:'Space Grotesk';font-weight:700;font-size:11.5px;color:var(--blue);margin-bottom:8px;letter-spacing:.05em;}
+  .step .num{font-family:'Manrope';font-weight:700;font-size:11.5px;color:var(--blue);margin-bottom:8px;letter-spacing:.05em;}
   .step p{font-size:13px;color:var(--grey);line-height:1.55;}
 
   .points-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
   .point-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:15px 18px;display:flex;align-items:center;justify-content:space-between;gap:10px;}
   .point-card .label{font-size:13px;}
-  .point-card .val{font-family:'Space Grotesk';font-weight:700;font-size:15px;color:var(--blue);white-space:nowrap;}
+  .point-card .val{font-family:'Manrope';font-weight:700;font-size:15px;color:var(--blue);white-space:nowrap;}
 
   .redeem-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
   .redeem-card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px;}
@@ -167,9 +168,13 @@
   .broker-actions{display:flex;gap:8px;}
 
   footer{border-top:1px solid var(--line);padding:28px 0;margin-top:40px;}
-  .footer-inner{display:flex;justify-content:center;align-items:center;gap:10px;}
-  .footer-inner img{width:20px;height:20px;}
-  .footer-inner span{font-size:12.5px;color:var(--grey-soft);}
+  .footer-inner{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:8px;text-align:center;}
+  .footer-brand-row{display:flex;align-items:center;gap:8px;}
+  .footer-brand-row img{width:20px;height:20px;}
+  .footer-brand-row span{font-size:12.5px;color:var(--grey-soft);}
+  .footer-reg{font-size:12px;color:var(--grey-soft);}
+  .footer-cta{font-size:13px;font-weight:600;color:var(--blue);cursor:pointer;background:none;border:none;font-family:inherit;padding:2px 0;}
+  .footer-cta:hover{text-decoration:underline;}
 
   @media (max-width:760px){
     .steps,.points-grid,.redeem-grid{grid-template-columns:1fr;}
@@ -184,7 +189,7 @@
   <div class="wrap">
     <div class="brand">
       <img src="logo.svg" alt="">
-      <span><span class="a">TURBINA</span> MAX</span>
+      <span><span class="a">TURBINA</span> MAX<span class="v2-badge">2.0</span></span>
     </div>
     <div class="header-right">
       <button class="icon-btn" id="themeToggle" aria-label="Alternar tema" title="Alternar tema">
@@ -231,8 +236,12 @@
 
 <footer>
   <div class="wrap footer-inner">
-    <img src="logo.svg" alt="">
-    <span>TURBINA MAX — Engajamento que gera recompensas.</span>
+    <div class="footer-brand-row">
+      <img src="logo.svg" alt="">
+      <span>TURBINA MAX 2.0 — Engajamento que gera recompensas.</span>
+    </div>
+    <div class="footer-reg">Regulamento vigente atualizado em 07 de julho de 2026.</div>
+    <button class="footer-cta" id="footerUseCta">Use o TURBINA MAX na sua franquia →</button>
   </div>
 </footer>
 
@@ -627,6 +636,8 @@
       a: 'O critério de elegibilidade contínua é estar com o <strong>fee em dia</strong> até 31/12.' },
     { kw: ['aprovacao','aprovação','aprovar','broker aprova','quem aprova'],
       a: 'Toda ação registrada entra numa fila e é revisada pelo broker/staff da franquia antes de virar ponto. Você acompanha o status (pendente, aprovado, recusado) em "Minhas ações".' },
+    { kw: ['usar o turbina max','minha franquia','outra franquia','levar o turbina max','contratar o turbina max','quero o turbina max','minha imobiliaria','minha imobiliária','minha corretora'],
+      a: 'Que bom! Deixa seu contato aqui que a equipe do TURBINA MAX fala com você pra colocar sua franquia pra rodar no programa:', card: 'lead' },
   ];
   const FALLBACK = 'Ainda não tenho certeza sobre isso. Posso ajudar com pontuação, registro de ação, aprovação ou resgate de recompensas.';
 
@@ -673,11 +684,40 @@
       if (res.card === 'pontos') renderPointsCard();
       if (res.card === 'como_funciona') renderComoFuncionaCard();
       if (res.card === 'resgate') renderResgateCard();
+      if (res.card === 'lead') renderLeadCard();
     }, 380);
+  }
+
+  function renderLeadCard(){
+    const card = document.createElement('div');
+    card.className = 'card-inline';
+    card.innerHTML = `
+      <div class="field"><label>Nome</label><input type="text" class="leadNome" placeholder="Seu nome"></div>
+      <div class="field"><label>Franquia / imobiliária</label><input type="text" class="leadFranquia" placeholder="Nome da sua franquia"></div>
+      <div class="field"><label>E-mail ou WhatsApp</label><input type="text" class="leadContato" placeholder="seuemail@... ou (21) 9....."></div>
+      <div class="modal-actions"><button class="btn btn-primary leadSubmitBtn">Quero conhecer o TURBINA MAX</button></div>
+    `;
+    addCard(card);
+    const nome = card.querySelector('.leadNome');
+    const franquia = card.querySelector('.leadFranquia');
+    const contato = card.querySelector('.leadContato');
+    const submitBtn = card.querySelector('.leadSubmitBtn');
+    submitBtn.addEventListener('click', () => {
+      if (!nome.value.trim() || !contato.value.trim()) { addMsg('Preciso pelo menos do seu nome e de um contato pra seguir.', 'bot'); return; }
+      const leads = JSON.parse(localStorage.getItem('tm_leads') || '[]');
+      leads.push({ nome: nome.value.trim(), franquia: franquia.value.trim(), contato: contato.value.trim(), date: Date.now() });
+      localStorage.setItem('tm_leads', JSON.stringify(leads));
+      nome.disabled = true; franquia.disabled = true; contato.disabled = true; submitBtn.disabled = true; submitBtn.textContent = 'Enviado ✓';
+      addMsg('Recebido! Alguém da equipe TURBINA MAX vai entrar em contato em breve pra te mostrar como colocar sua franquia pra rodar no programa.', 'bot');
+    });
   }
 
   sendBtn.addEventListener('click', () => handleQuestion(chatInput.value));
   chatInput.addEventListener('keydown', e => { if (e.key === 'Enter') handleQuestion(chatInput.value); });
+  document.getElementById('footerUseCta').addEventListener('click', () => {
+    document.querySelector('.ask-bar').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    handleQuestion('Quero usar o TURBINA MAX na minha franquia');
+  });
 
   refreshChips();
   renderAuthState();

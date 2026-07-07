@@ -1,0 +1,39 @@
+<svg width="560" height="150" viewBox="0 0 560 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="TURBINA MAX 2.0">
+  <defs>
+    <linearGradient id="bodyGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#4C84F2"/>
+      <stop offset="100%" stop-color="#2F6FED"/>
+    </linearGradient>
+    <linearGradient id="flameGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F25C66"/>
+      <stop offset="100%" stop-color="#E63946"/>
+    </linearGradient>
+  </defs>
+
+  <!-- ===== ícone (foguete, reaproveitado do logo.svg) ===== -->
+  <g transform="translate(5,15) scale(1)">
+    <path d="M48 84 L60 96 L72 84 L60 90 Z" fill="url(#flameGrad)" opacity="0.45"/>
+    <path d="M51 76 L60 87 L69 76 L60 81 Z" fill="url(#flameGrad)" opacity="0.7"/>
+    <path d="M54 68 L60 78 L66 68 L60 72 Z" fill="url(#flameGrad)"/>
+    <path d="M44 60 L34 76 L48 70 Z" fill="#E63946"/>
+    <path d="M76 60 L86 76 L72 70 Z" fill="#E63946"/>
+    <path d="M60 14 C70 14 76 30 76 46 L76 66 C76 70 72 72 60 72 C48 72 44 70 44 66 L44 46 C44 30 50 14 60 14 Z" fill="url(#bodyGrad)"/>
+    <path d="M60 14 C68 14 73 26 75 38 L60 38 Z" fill="#6E9BFF" opacity="0.55"/>
+    <circle cx="60" cy="40" r="9" fill="#0a1322"/>
+    <circle cx="60" cy="40" r="5.5" fill="#EAF1F8"/>
+  </g>
+
+  <!-- ===== wordmark ===== -->
+  <text x="128" y="78" font-family="Manrope, 'Poppins', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-weight="800" font-size="44" letter-spacing="-1" fill="#10182B">
+    <tspan fill="#2F6FED">TURBINA</tspan> MAX
+  </text>
+  <text x="130" y="104" font-family="Manrope, 'Poppins', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-weight="600" font-size="15" letter-spacing="1.5" fill="#69728A">
+    ENGAJAMENTO QUE GERA RECOMPENSAS
+  </text>
+
+  <!-- ===== selo 2.0 ===== -->
+  <g transform="translate(478,32)">
+    <rect x="0" y="0" width="58" height="28" rx="14" fill="#E63946"/>
+    <text x="29" y="19" font-family="Manrope, 'Poppins', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-weight="800" font-size="15" fill="#FFFFFF" text-anchor="middle">2.0</text>
+  </g>
+</svg>
